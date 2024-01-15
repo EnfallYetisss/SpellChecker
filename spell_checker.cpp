@@ -126,4 +126,34 @@ private:
 
 int main()
 {
+    SpellChecker sc;
+    string temp;
+    ifstream file("words.txt");
+    sc.addToDictionary("a");
+    while (!file.eof())
+    {
+        file >> temp;
+        //cout << temp << endl;
+        if (temp.length() != 1)
+        {
+            sc.addToDictionary(temp);
+        }
+        //words to store in dictionary
+    }
+    file.close();
+    string word;
+    cout << "enter word\n";
+    cin >> word;
+    for (char& c : word) {
+        c = std::tolower(c);
+    }
+
+    if (sc.isInDictionary(word))
+    {
+        cout << "it is present in dictionary";
+    }
+    else
+    {
+        sc.suggestAlternatives(word);
+    }
 }
